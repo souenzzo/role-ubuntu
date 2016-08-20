@@ -1,0 +1,31 @@
+---
+- name: sources.list
+  template:
+    src: ./templates/sources.list.j2
+    dest: /etc/apt/sources.list
+
+- name: update apt cache
+  apt:
+    update_cache: yes
+    cache_valid_time: "{{ cache_valid_time }}"
+
+- name: install ansible deps
+  apt:
+    name: "{{ item }}"
+  with_items: "{{ ansible_deps }}"
+
+- name: "apt upgrade {{ upgrade }}"
+  apt:
+    upgrade: "{{ upgrade }}"
+
+- name: "apt remove"
+  apt:
+    name: "{{ item }}"
+    state: absent
+    purge: "{{ purge }}"
+  with_items: "{{ remove }}"
+
+- name: "apt install"
+  apt:
+    name: "{{ item }}"
+  with_items: "{{ install }}"

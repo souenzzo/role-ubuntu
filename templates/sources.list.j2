@@ -1,0 +1,17 @@
+## Gen by github.com/souenzzo/role-ubuntu ansible role, please report bugs
+
+deb {{ repository }} {{ ansible_distribution_release }}{% for comp in components %} {{ comp }}{% endfor %}
+
+{% for chan in channels %}
+deb {{ repository }} {{ ansible_distribution_release }}-{{ chan }}{% for comp in components %} {{ comp }}{% endfor %}
+
+{% endfor %}
+
+{% if partner %}
+deb {{ partner_repository }} {{ ansible_distribution_release }} partner
+{% endif %}
+
+{% if security %}
+deb {{ security_repository }} {{ ansible_distribution_release }}-security {% for comp in components %} {{ comp }}{% endfor %}
+{% endif %}
+

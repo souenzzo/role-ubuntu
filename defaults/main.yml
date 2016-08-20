@@ -1,0 +1,17 @@
+---
+repository: "http://archive.ubuntu.com/ubuntu/"
+components:
+  - main
+security: yes
+security_repository: "http://security.ubuntu.com/ubuntu/"
+partner: no
+partner_repository: "http://archive.canonical.com/ubuntu/"
+cache_valid_time: 21600
+purge: no
+upgrade: "yes"
+ansible_deps:
+  - aptitude
+  - python-apt
+channels: []
+install: []
+remove: []
